@@ -65,10 +65,10 @@ namespace QuienLoDijo
                     Console.WriteLine($"*------------------------------------------------------------------------------------------------------------");
                     Console.WriteLine($"*       Accuracy:         {testMetrics.Accuracy:0.###}");
                     Console.WriteLine($"*       F1 Score:         {testMetrics.F1Score:0.###}");
-                    Console.WriteLine($"*       MacroAccuracy:    {testMetrics.PositivePrecision:0.###}");
-                    Console.WriteLine($"*       MacroAccuracy:    {testMetrics.NegativePrecision:0.###}");
-                    Console.WriteLine($"*       MacroAccuracy:    {testMetrics.NegativeRecall:0.###}");
-                    Console.WriteLine($"*       MacroAccuracy:    {testMetrics.PositiveRecall:0.###}");
+                    Console.WriteLine($"*       PosPrecision:     {testMetrics.PositivePrecision:0.###}");
+                    Console.WriteLine($"*       NegPrecision:     {testMetrics.NegativePrecision:0.###}");
+                    Console.WriteLine($"*       NegRecall:        {testMetrics.NegativeRecall:0.###}");
+                    Console.WriteLine($"*       PosRecall:        {testMetrics.PositiveRecall:0.###}");
                     Console.WriteLine($"*       LogLoss:          {testMetrics.LogLoss:#.###}");
                     Console.WriteLine($"*       LogLossReduction: {testMetrics.LogLossReduction:#.###}");
                     Console.WriteLine($"*************************************************************************************************************");
@@ -76,7 +76,7 @@ namespace QuienLoDijo
                 }
                 else if(args[0] == "test")
                 {
-                    // dotnet run test model.zip "La pandemia nos cayó como anillo al dedo"
+                    // dotnet run test model.zip "La mafia del poder"
 
                     trainedModel = mlContext.Model.Load(args[1], out var inputSchema);
                     predictionEngine = mlContext.Model.CreatePredictionEngine<Dialogo, Prediccion>(trainedModel);
@@ -85,7 +85,7 @@ namespace QuienLoDijo
                     var prediccion = predictionEngine.Predict(new Dialogo {
                         Texto = args[2]
                     });
-                    var personaje = prediccion.Personaje ? "López Obrador" : "López-Gatell";
+                    var personaje = prediccion.Probability > 0.5 ? "López Obrador" : "López-Gatell";
                     Console.WriteLine($"\"{args[2]}\" suena a que lo dijo {personaje}. Score {prediccion.Score} - {prediccion.Probability}");
                 }
             }
