@@ -4,6 +4,8 @@ namespace QuienLoDijo
 {
     using System;
     using Microsoft.ML;
+    using Microsoft.ML.Transforms.Text;
+
     class Program
     {
         static void Main(string[] args)
@@ -26,7 +28,21 @@ namespace QuienLoDijo
 
                     // var mapLabelsToValues = mlContext.Transforms.Conversion.MapValueToKey(outputColumnName:"Label", inputColumnName: nameof(Dialogo.Personaje));
 
-                    var featuriseText = mlContext.Transforms.Text.FeaturizeText(outputColumnName: "Features", inputColumnName: nameof(Dialogo.Texto));
+                    var featurizeOptions = new TextFeaturizingEstimator.Options()
+                    {
+                        StopWordsRemoverOptions = new StopWordsRemovingEstimator.Options() 
+                        {
+                            Language = TextFeaturizingEstimator.Language.Spanish 
+                        },
+                        CaseMode = TextNormalizingEstimator.CaseMode.Lower,
+                        WordFeatureExtractor = new WordBagEstimator.Options() { NgramLength = 3, UseAllLengths = true },
+                        CharFeatureExtractor = new WordBagEstimator.Options() { NgramLength = 4, UseAllLengths= false },
+                    };
+
+                    var featuriseText = mlContext.Transforms.Text.FeaturizeText(
+                        options: featurizeOptions,
+                        outputColumnName: "Features", 
+                        inputColumnNames: nameof(Dialogo.Texto));
 
                     var estimator = mlContext.BinaryClassification.Trainers.SdcaLogisticRegression(labelColumnName: nameof(Prediccion.Personaje), featureColumnName: "Features");
 
