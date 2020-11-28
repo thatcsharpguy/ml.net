@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.808.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fifa2018.Common", "Fifa2018.Common\Fifa2018.Common.csproj", "{F87F9321-29AA-4D7B-B0D5-A5AA0BE77B52}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fifa2018.Predict", "Fifa2018.Predict\Fifa2018.Predict.csproj", "{B824C077-2450-4F07-9E29-F8D353D20FEC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fifa2018.Train", "Fifa2018.Train\Fifa2018.Train.csproj", "{69A5C7B7-6427-43DE-BD50-2775A501D39C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F87F9321-29AA-4D7B-B0D5-A5AA0BE77B52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F87F9321-29AA-4D7B-B0D5-A5AA0BE77B52}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F87F9321-29AA-4D7B-B0D5-A5AA0BE77B52}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F87F9321-29AA-4D7B-B0D5-A5AA0BE77B52}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B824C077-2450-4F07-9E29-F8D353D20FEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B824C077-2450-4F07-9E29-F8D353D20FEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B824C077-2450-4F07-9E29-F8D353D20FEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B824C077-2450-4F07-9E29-F8D353D20FEC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69A5C7B7-6427-43DE-BD50-2775A501D39C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69A5C7B7-6427-43DE-BD50-2775A501D39C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69A5C7B7-6427-43DE-BD50-2775A501D39C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69A5C7B7-6427-43DE-BD50-2775A501D39C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AD638838-B0A8-4A4A-B7CB-F887D6AB59D8}
+	EndGlobalSection
+EndGlobal
