@@ -63,6 +63,11 @@
                 outputColumnName: "Features",
                 "NormalisedFare", "OneHotTicketClass", "OneHotEmbarked", "OneHotSex"
             );
+
+            var trainer = context.BinaryClassification.Trainers.SdcaLogisticRegression(
+                labelColumnName:"Label",
+                featureColumnName:"Features"
+            );
         }
     }
 }
