@@ -1,5 +1,6 @@
 ﻿namespace Titanic.Train
 {
+    using System;
     using Microsoft.ML;
     using Titanic.Common;
     using static Microsoft.ML.Transforms.MissingValueReplacingEstimator;
@@ -67,6 +68,31 @@
             var trainer = context.BinaryClassification.Trainers.SdcaLogisticRegression(
                 labelColumnName:"Label",
                 featureColumnName:"Features"
+            );
+
+            var pipeline = transformLabel
+                .Append(transformTicketClassOneHot)
+                .Append(transformSeveralOneHot)
+                .Append(transformFillMeanFare)
+                .Append(transformNormaliseFare)
+                .Append(transformConcatenateFeatures)
+                .Append(trainer);
+
+            var trainedModel = pipeline.Fit(splits.TrainSet);
+
+            var metrics = context.BinaryClassification.EvaluateNonCalibrated(
+                data: trainedModel.Transform(splits.TestSet),
+                labelColumnName: "Label"
+            );
+
+            Console.WriteLine($"Exactitud: {metrics.Accuracy:0.##}");
+            Console.WriteLine($"Precisión: {metrics.PositivePrecision:0.##}");
+            Console.WriteLine($"Recall:    {metrics.PositiveRecall:0.##}");
+
+            context.Model.Save(
+                model: trainedModel,
+                inputSchema: allData.Schema,
+                filePath: "model.zip"
             );
         }
     }
